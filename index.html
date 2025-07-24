@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인스타 라이크 웹</title>
+    <title>AICB</title>
     <link rel="stylesheet" href="css/style.css">
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
@@ -12,7 +12,7 @@
 </head>
 <body>
     <header class="main-header">
-        <img src="images/logo.png" alt="로고" class="header-logo">
+        <img src="images/logo.png" alt="로고" width="60" height="60" class="header-logo">
     </header>
 
     <nav class="sub-nav">
@@ -44,11 +44,11 @@
 
     <footer class="main-footer">
         <button class="footer-btn active" id="homeBtn">
-            <img src="images/home_icon.png" alt="홈">
+            <img src="/images/home_icon.png" alt="홈">
             <span>홈</span>
         </button>
         <button class="footer-btn" id="searchBtn">
-            <img src="images/search_icon.png" alt="검색">
+            <img src="/images/search_icon.png" alt="돋보기">
             <span>돋보기</span>
         </button>
         <button class="footer-btn large-btn" id="addBtn">
@@ -56,7 +56,7 @@
             <span>추가</span>
         </button>
         <button class="footer-btn" id="messageBtn">
-            <img src="/images/chat_icon.png" alt="채팅">
+            <img src="/images/chat_icon.png" alt="말풍선">
             <span>메시지</span>
         </button>
         <button class="footer-btn" id="profileBtn">
@@ -65,73 +65,6 @@
         </button>
     </footer>
 
-    <script src="js/script.js"></script>
-    
-    <script type="text/javascript">
-        let mapInstance = null; // 지도 인스턴스를 저장할 변수
-
-        // Geolocation API를 사용하여 현재 위치를 가져오고 지도를 로드하는 함수
-        function loadMapWithCurrentLocation() {
-            if (mapInstance === null) { // 지도가 아직 생성되지 않았을 경우에만 생성
-                mapInstance = sop.map('map-container'); // 지도 컨테이너에 지도 생성
-            }
-
-            // 기본 위치 (대전) 설정: 사용자 위치를 가져오지 못할 경우 사용
-            // 마커 생성 예제 코드를 참고하여 953427, 1950827 (대전 근처)으로 변경했습니다.
-            let defaultCenter = sop.utmk(953427, 1950827); 
-            let defaultZoom = 9; // 줌 레벨은 9로 유지
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        // 위치 정보 가져오기 성공
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-                        
-                        // sop.LatLng 객체를 사용하여 위경도를 UTM-K 좌표로 변환
-                        const utmkXY = new sop.LatLng(lat, lng);
-                        const currentUtmk = sop.utmk(utmkXY.x, utmkXY.y); // 마커 생성을 위해 UTM-K 객체로 변환
-
-                        mapInstance.setView(currentUtmk, defaultZoom); // 현재 위치(UTM-K)로 지도 중심 설정
-                        console.log(`현재 위치: 위도 ${lat}, 경도 ${lng}`);
-                        console.log(`변환된 UTM-K: x=${utmkXY.x}, y=${utmkXY.y}`);
-
-                        // ---------- 현재 위치에 기본 마커 추가 시작 ----------
-                        const currentPositionMarker = sop.marker([utmkXY.x, utmkXY.y]); // UTM-K 좌표 배열로 마커 생성
-                        currentPositionMarker.addTo(mapInstance);
-                        currentPositionMarker.bindPopup("<b>현재 나의 위치</b><br>여기에요!");
-                        // ---------- 현재 위치에 기본 마커 추가 끝 ----------
-
-                    },
-                    (error) => {
-                        // 위치 정보 가져오기 실패 또는 권한 거부
-                        console.error("위치 정보를 가져오는데 실패했습니다:", error);
-                        alert("위치 정보를 가져올 수 없습니다. 기본 위치로 지도를 표시합니다.");
-                        mapInstance.setView(defaultCenter, defaultZoom); // 기본 위치로 지도 중심 설정
-                        
-                        // 기본 위치에 기본 마커 추가 (위치 정보 실패 시)
-                        const defaultPositionMarker = sop.marker([defaultCenter.x, defaultCenter.y]);
-                        defaultPositionMarker.addTo(mapInstance);
-                        defaultPositionMarker.bindPopup("<b>기본 위치</b><br>위치 정보를 가져올 수 없습니다.");
-
-                    },
-                    {
-                        enableHighAccuracy: true, // 높은 정확도 요청
-                        timeout: 5000, // 5초 안에 위치를 가져오지 못하면 타임아웃
-                        maximumAge: 0 // 캐시된 위치 사용 안 함
-                    }
-                );
-            } else {
-                // Geolocation을 지원하지 않는 브라우저
-                alert("이 브라우저에서는 위치 정보를 지원하지 않습니다. 기본 위치로 지도를 표시합니다.");
-                mapInstance.setView(defaultCenter, defaultZoom); // 기본 위치로 지도 중심 설정
-
-                // 기본 위치에 기본 마커 추가 (Geolocation 미지원 시)
-                const defaultPositionMarker = sop.marker([defaultCenter.x, defaultCenter.y]);
-                defaultPositionMarker.addTo(mapInstance);
-                defaultPositionMarker.bindPopup("<b>기본 위치</b><br>브라우저가 Geolocation을 지원하지 않습니다.");
-            }
-        }
-    </script>
+    <script src="js/script.js"></script> 
 </body>
 </html>
