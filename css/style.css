@@ -1,0 +1,180 @@
+/* 기본 스타일 초기화 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #fafafa;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 화면 전체 높이 사용 */
+}
+
+/* Header 스타일 */
+.main-header {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center; /* 로고 중앙 정렬 */
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-logo {
+    max-width: 120px; /* 로고 크기 조절 */
+    height: auto;
+}
+
+/* Sub Navigation (실시간 현황, 제보 지도) 스타일 */
+.sub-nav {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    position: sticky;
+    top: 60px; /* 헤더 아래에 위치 */
+    z-index: 99;
+}
+
+.nav-button {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #8e8e8e;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-button.active {
+    color: #262626;
+    font-weight: bold;
+    border-bottom: 2px solid #262626;
+}
+
+/* Main Content Area */
+.content-area {
+    flex-grow: 1; /* 푸터가 바닥에 붙도록 남은 공간을 모두 차지 */
+    padding: 20px 0;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+}
+
+.content-area section {
+    display: none; /* 기본적으로 모든 섹션 숨김 */
+    padding: 0 15px; /* 양옆 패딩 */
+}
+
+.content-area section.active-section {
+    display: block; /* 활성화된 섹션만 표시 */
+}
+
+.content-area h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* 게시물 피드 스타일 */
+.post-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.post-item {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.post-item .post-image {
+    width: 100%;
+    height: auto;
+    display: block; /* 이미지 하단 여백 제거 */
+}
+
+.post-item .post-caption {
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 지도 섹션 스타일 */
+.map-container { /* map-placeholder 대신 map-container로 변경 */
+    background-color: #e0e0e0; /* 지도 로드 전 배경색 */
+    height: 400px; /* 지도가 표시될 높이 */
+    width: 100%;
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    border-radius: 5px;
+    /* 지도 API가 div 내부에 지도를 그릴 것이므로, 내부 텍스트는 필요 없어 제거했습니다. */
+}
+
+/* Hidden Utility Class */
+.hidden-section {
+    display: none;
+}
+
+/* Footer 스타일 */
+.main-footer {
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #dbdbdb;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+.footer-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: none;
+    background-color: transparent;
+    font-size: 10px; /* 텍스트 작게 */
+    color: #8e8e8e;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.footer-btn img {
+    width: 24px; /* 아이콘 크기 */
+    height: 24px;
+    display: block;
+    object-fit: contain;
+}
+
+.footer-btn.large-btn img { /* + 버튼 아이콘 조금 더 크게 */
+    width: 30px;
+    height: 30px;
+}
+
+.footer-btn.active {
+    color: #262626;
+    font-weight: bold;
+}
