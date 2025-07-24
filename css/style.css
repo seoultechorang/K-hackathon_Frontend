@@ -120,7 +120,7 @@ body {
 /* 지도 섹션 스타일 */
 .map-container { /* map-placeholder 대신 map-container로 변경 */
     background-color: #e0e0e0; /* 지도 로드 전 배경색 */
-    height: 400px; /* 지도가 표시될 높이 */
+    height: 550px; /* 지도가 표시될 높이 */
     width: 100%;
     max-width: 600px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
